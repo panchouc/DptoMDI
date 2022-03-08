@@ -1,4 +1,5 @@
 from openpyxl.workbook import Workbook
+import pandas as pd
 
 def generador_archivos(nombre_archivo: str, primer_dia_mes: int, ultimo_dia_mes: int, mes: str) -> None:
     """
@@ -12,3 +13,7 @@ def generador_archivos(nombre_archivo: str, primer_dia_mes: int, ultimo_dia_mes:
         
     wb.save(filename = f"{nombre_archivo}")
     
+    
+def generador_columnas():
+    dataframe = pd.DataFrame(columns = ["Cantidad", "Tipo", "Precio", "Persona", "Categoría"])
+    print(dataframe.head())

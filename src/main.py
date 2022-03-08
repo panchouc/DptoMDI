@@ -11,4 +11,12 @@ ADEMÁS, SERÍA BUENO REPLICAR LAS MISMAS COLUMNAS EN TODOS LOS WORKSHEETS
 
 """
 
-from functions import generador_archivos
+from functions import generador_archivos, generador_columnas
+
+def main():
+    variable = generador_columnas()
+    
+    
+if __name__ == '__main__':
+    main()
+    print("HOLA")

@@ -10,10 +10,25 @@ def generador_archivos(nombre_archivo: str, primer_dia_mes: int, ultimo_dia_mes:
     
     for i in range(primer_dia_mes, ultimo_dia_mes + 1):
         wb.create_sheet(f"{i} {mes}")
-        
+        sheet = wb[f"{i} {mes}"]
+        sheet["A1"] = "Cantidad"
+        sheet["B1"] = "Tipo"
+        sheet["C1"] = "Precio"
+        sheet["D1"] = "Persona"
+        sheet["E1"] = "Categoria"
+    
+    #wb.create_sheet("Total mes")
+    
+    #hoja = wb["Total mes"]
+    #hoja["A1"] = "Cantidad"
+    #hoja["B1"] = "Tipo"
+    #hoja["C1"] = "Precio"
+    #hoja["D1"] = "Persona"
+    #hoja["E1"] = "Categoria"
+    
+    del wb["Sheet"]   
     wb.save(filename = f"{nombre_archivo}")
+    print("Tu archivo ha sido creado")
     
+
     
-def generador_columnas():
-    dataframe = pd.DataFrame(columns = ["Cantidad", "Tipo", "Precio", "Persona", "Categoría"])
-    print(dataframe.head())

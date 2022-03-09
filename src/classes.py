@@ -5,13 +5,15 @@ FILTRAR SEGÚN LO MISMO QUE QUIERO ORDENAR
 """
 
 import pandas as pd
+from openpyxl.workbook import Workbook
+from openpyxl import load_workbook
 
 
 class LecturaArchivos:
     
-    def __init__(self, nombre_archivo: str) -> None:
+    def __init__(self, nombre_archivo: str, mes: str) -> None:
         self.nombre = nombre_archivo
-        
+        self.mes = mes
         
     def resumen_total(self):
         """
@@ -82,14 +84,12 @@ class LecturaArchivos:
     def gastos_totales_mes(self):
         file = pd.ExcelFile(self.nombre)
         
+        
         worksheets_names = []
         
         for i in file.sheet_names:
             worksheets_names.append(pd.read_excel(file, i))
         
         result = pd.concat(worksheets_names)
-        
-        writer = pd.ExcelWriter(self.nombre)
-        
-        result.to_excel(writer, "Total Mes")
-        writer.save()
+    
+        result.to_excel(f"Gastos totales {self.mes}.xlsx", index=False)

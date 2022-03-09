@@ -15,7 +15,7 @@ from functions import generador_archivos
 from classes import LecturaArchivos
 
 def main():
-    numero = int(input("¿Que acción desea realizar?\n1) Crear un nuevo archivo\n2) Leer un archivo\n3) Visualizar los gastos no compartidos"))
+    numero = int(input("¿Que acción desea realizar?\n1) Crear un nuevo archivo\n2) Leer un archivo\n3) Visualizar los gastos no compartidos\n4) Gastos del mes\n"))
     
     if numero == 1:
         file = input("Ingresa como quieres guardar el archivo, ej: Marzo_2022.xlsx ")
@@ -26,15 +26,23 @@ def main():
     
     elif numero == 2:
         nombre = input("Ingrese el nombre del archivo a leer, Ej: Marzo_2022.xlsx ")
-        archivo = LecturaArchivos(nombre)
+        mes = input("Ingresa el mes del archivo: ")
+        archivo = LecturaArchivos(nombre, mes)
         archivo.resumen_total()
         
     elif numero == 3:
         nombre = input("Ingrese el nombre de la persona que quiere revisar sus gastos personales:\nSolo se permite: Francisco o Felipe")
         archivo = input("Ingrese el nombre del archivo, ej: Marzo_2022.xlsx")
-        lectura = LecturaArchivos(archivo)
+        mes = input("Ingresa el mes del archivo: ")
+        lectura = LecturaArchivos(archivo, mes)
         lectura.gastos_unicos_persona(nombre)
-    
+   
+    elif numero == 4:
+       nombre = input("Ingrese el nombre del archivo a leer, Ej: Marzo_2022.xlsx ")
+       mes = input("Ingresa el mes del archivo: ")
+       archivo = LecturaArchivos(nombre, mes)
+       archivo.gastos_totales_mes()
+
 if __name__ == '__main__':
     main()
     

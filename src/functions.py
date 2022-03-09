@@ -17,14 +17,6 @@ def generador_archivos(nombre_archivo: str, primer_dia_mes: int, ultimo_dia_mes:
         sheet["D1"] = "Persona"
         sheet["E1"] = "Categoria"
     
-    #wb.create_sheet("Total mes")
-    
-    #hoja = wb["Total mes"]
-    #hoja["A1"] = "Cantidad"
-    #hoja["B1"] = "Tipo"
-    #hoja["C1"] = "Precio"
-    #hoja["D1"] = "Persona"
-    #hoja["E1"] = "Categoria"
     
     del wb["Sheet"]   
     wb.save(filename = f"{nombre_archivo}")

@@ -5,9 +5,9 @@ from classes import LecturaArchivos
 
 archivo_display = "Gastos totales Marzo.xlsx"
 file = pd.read_excel(archivo_display)
-#archivo_calculos = LecturaArchivos("Marzo_2022.xlsx", "Marzo")
+archivo_calculos = LecturaArchivos("Marzo_2022.xlsx", "Marzo")
 
-#datos = archivo_calculos.resumen_total()
+datos = archivo_calculos.resumen_total()
 
 parcial_feli_df = file[file["Persona"] == "Felipe"]
 parcial_fco_df = file[file["Persona"] == "Francisco"]
@@ -33,7 +33,7 @@ parcial_fco = float(parcial_fco_df["Precio"].sum())
 total_feli = float(total_feli_df["Precio"].sum())
 total_fco = float(total_fco_df["Precio"].sum())
 
-print(total_feli)
+
 
 st.set_page_config(page_title="Contabilidad",
                    page_icon = ":moneybag:",
@@ -59,6 +59,7 @@ file_selection = file.query(
     "Categoria == @categoria & Persona == @persona"
 )
 
+st.title("Gastos del mes")
 st.dataframe(file_selection)
 
 
@@ -100,3 +101,8 @@ with right_column:
     st.subheader(f"{cantidad}")
 
 st.markdown("---------")
+
+
+st.title("Gastos en orden descendente")
+orden = file.sort_values("Precio", ascending=False)
+st.dataframe(orden, 2000, 1000)

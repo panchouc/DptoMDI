@@ -15,17 +15,16 @@ parcial_fco_df = file[file["Persona"] == "Francisco"]
 total_feli_df = ""
 total_fco_df = ""
 
-if "Solo Felipe" in file["Persona"]:
-    total_feli_df = parcial_feli_df + file[file["Persona"] == "Solo Felipe"]
-else:
-    total_feli_df = parcial_feli_df
+
+try:
+    frames_fco = [file[file["Persona"] == "Francisco"], file[file["Persona"] == "Solo Francisco"]]
+    total_fco_df = pd.concat(frames_fco)
+
+    frames_felipe = [file[file["Persona"] == "Felipe"], file[file["Persona"] == "Solo Felipe"]]
+    total_feli_df = pd.concat(frames_felipe)
     
-if "Solo Francisco" in file["Persona"]:
-    total_fco_df = parcial_fco_df + file[file["Persona"] == "Solo Francisco"]
-else:
-    total_fco_df = parcial_fco_df
-
-
+except:
+    print("Algo ha salido mal")
 
 parcial_feli = float(parcial_feli_df["Precio"].sum())
 parcial_fco = float(parcial_fco_df["Precio"].sum())
@@ -60,7 +59,7 @@ file_selection = file.query(
 )
 
 st.title("Gastos del mes")
-st.dataframe(file_selection)
+st.dataframe(file_selection, 2000, 1000)
 
 
 #MAINPAGE
